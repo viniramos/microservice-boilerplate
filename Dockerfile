@@ -25,10 +25,10 @@ RUN pecl install redis \
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 WORKDIR /var/www
 copy ./src/composer.json composer.json
-run composer install 
 
 RUN curl -sL https://deb.nodesource.com/setup_10.x  | bash -
 RUN apt-get -y install nodejs
 RUN npm install pm2 -g
-
-CMD ["pm2-runtime", "/var/www/server.php", "--watch"]
+run cd /var/www && composer install
+CMD ["pm2-runtime", "/var/www/server.php", "--watch", "--exp-backoff-restart-delay=2000"]
+ 

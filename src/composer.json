@@ -1,9 +1,12 @@
 {
     "require": {
-        "leocavalcante/siler": "1.5"
+        "leocavalcante/siler": "1.5",
+        "mongodb/mongodb": "*"
     },
     "require-dev": {
         "swoole/ide-helper": "*"
+    },
+    "autoload": {
+        "psr-4": {"Controllers\\": "controllers"}
     }
-
 }
